@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
+.right-side {
+    width: 500px;
+    max-width: 500px;
+    height: 500px;
+    max-height: 500px;
+    margin: 12% auto;
+}
+
+.left-side {
+    margin: 8% auto;
+    border-radius: 20px;
+    height: 85%;
+    max-height: 85%;
+    overflow-y: auto;
+    background-color: #fff;
+}
