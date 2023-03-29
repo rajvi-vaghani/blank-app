@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./layout/main/main.module').then(m => m.MainModule)
+  },
+  {
+    path: 'component',
+    loadChildren: () => import('./layout/components/components.module').then(m => m.ComponentsModule)
   }
 ];
 
@@ -13,3 +17,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
+//        component/user - user grid

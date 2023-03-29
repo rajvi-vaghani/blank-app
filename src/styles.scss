@@ -37,10 +37,31 @@ body {
     background-color: #f8f7fc;
 }
 
+.bg-basic-gray {
+    background-color: #f7f7f7;
+}
+
 .full-height {
     height: 100vh;
     max-height: 100vh;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+}
+
+ ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

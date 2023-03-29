@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="bg-basic-gray head mt-5 mb-3 p-4">
+        test
+    </div>
+    <div class="">
+        <lib-material-grid *ngIf="studentData.length > 0" [tableColumns]="Columns" [tableData]="studentData" [editAction]="edit" [deleteAction]="delete" [gridname]="'Student Details'">
+        </lib-material-grid>
+    </div>
+</div>

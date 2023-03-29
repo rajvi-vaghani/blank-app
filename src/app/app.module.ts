@@ -7,11 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainComponent } from './layout/main/main.component';
 import { StorybookLibraryModule } from 'intergation-storybook-library';
 import { HttpClientModule } from '@angular/common/http';
+import { ComponentsComponent } from './layout/components/components.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    ComponentsComponent
   ],
   imports: [
     BrowserModule,

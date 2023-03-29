@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginFormComponent } from './login-form/login-form.component';
 import { MainComponent } from './main.component';
 
 const routes: Routes = [
@@ -15,7 +14,7 @@ const routes: Routes = [
       {
         path: 'login',
         loadChildren: () => import('./login-form/login-form.module').then(m => m.LoginFormModule)
-      }
+      },
     ]
   }
 ];
