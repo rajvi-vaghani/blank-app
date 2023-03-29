@@ -1,7 +1,4 @@
 <div class="container">
     <h2 class="text-center">sign in</h2>
-    <form [formGroup]="formGroup">
-        <lib-set-form [dynamicField]="mat_field"></lib-set-form>
-        <button class="btn btn-dark" (click)="onSubmit()">Sign in</button>
-    </form>
+    <lib-set-form [dynamicField]="mat_field" (parentClick)="parentFunction($event)"></lib-set-form>
 </div>

@@ -22,7 +22,29 @@ export class LoginComponent implements OnInit {
       rules: {
         required: true
       }
-    }
+    },
+    name: {
+      type: "text",
+      value: "",
+      appearance: "outline",
+      placeholder: "Enter email",
+      name: 'name',
+      formControlName: 'name',
+      rules: {
+        required: true
+      }
+    },
+    test: {
+      type: "text",
+      value: "",
+      appearance: "outline",
+      placeholder: "Enter email",
+      name: 'test',
+      formControlName: 'test',
+      rules: {
+        required: true
+      }
+    },
   }
   constructor(private formgroupDirective: FormGroupDirective) {
     this.formGroup = this.formgroupDirective.control
@@ -34,12 +56,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.login()
+    // this.login()
   }
 
-  login() {
-
-    console.log(this.formgroupDirective)
-    console.log(this.formgroupDirective.control)
+  parentFunction(parameter: any) {
+    console.log(parameter);
   }
+
 }
