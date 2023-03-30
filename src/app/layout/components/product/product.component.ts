@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ConfirmComponent } from '../confirm/confirm.component';
 import { ProductFormComponent } from '../product-form/product-form.component';
 import { UserApiService } from '../service/user-api.service';
+import { AlertService } from '../service/alert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -12,12 +14,10 @@ import { UserApiService } from '../service/user-api.service';
 })
 export class ProductComponent implements OnInit {
   ProductData: Array<ProductData> = []
-  edit: string = `<i class="bi bi-pen"></i>`
-  delete: string = '<i class="bi bi-trash"></i>'
 
   Columns: Array<cols> = [];
 
-  constructor(private apiservice: UserApiService, public sanitizer: DomSanitizer, public dialog: MatDialog) {
+  constructor(private apiservice: UserApiService, public sanitizer: DomSanitizer, public dialog: MatDialog, private alertService: AlertService,private router:Router) {
 
     this.Columns = [
       {
@@ -47,11 +47,11 @@ export class ProductComponent implements OnInit {
       },
       {
         columnDef: 'edit',
-        cell: (element: Record<string, any>) => `${this.edit}`
+        cell: (element: Record<string, any>) => 'edit'
       },
       {
         columnDef: 'delete',
-        cell: (element: Record<string, any>) => `${this.delete}`
+        cell: (element: Record<string, any>) => 'delete'
       },
     ]
   }
@@ -79,6 +79,36 @@ export class ProductComponent implements OnInit {
     })
 
 
+  }
+
+  edit(element: any) {
+    this.dialog.open(ProductFormComponent, {
+      height: '700px',
+      width: '500px',
+      disableClose: true,
+      data: element
+    });
+  }
+
+  delete(element: any) {
+    const dialog = this.dialog.open(ConfirmComponent, {
+      height: '200px',
+      width: '400px',
+    });
+
+    dialog.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
+        this.apiservice.deleteProduct(element._id).subscribe(res => {
+          if (res) {
+            this.alertService.openSnackBar('Data delete successfully!!');
+            this.apiservice.getProduct().subscribe((res: any) => {
+              this.ProductData = res.data;
+            })
+          }
+        })
+
+      }
+    });
   }
 
 }

@@ -10,12 +10,14 @@ import { StorybookLibraryModule } from 'intergation-storybook-library';
 import { ProductComponent } from './product/product.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { MaterialModule } from 'src/app/material.modules';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 @NgModule({
   declarations: [
     UserComponent,
     ProductComponent,
     ProductFormComponent,
+    ConfirmComponent,
   ],
   imports: [
     CommonModule,

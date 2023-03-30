@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ProductComponent } from '../product/product.component';
 import { UserApiService } from '../service/user-api.service';
 
 @Component({
@@ -8,13 +9,13 @@ import { UserApiService } from '../service/user-api.service';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit {
 
   productModel = {
     productName: {
       appearance: "outline",
       type: "text",
-      value: "test",
+      value: "",
       placeholder: "Enter product name",
       name: 'productName',
       rules: {
@@ -24,7 +25,7 @@ export class ProductFormComponent {
     category: {
       appearance: "outline",
       type: "text",
-      value: "test",
+      value: "",
       placeholder: "Enter category name",
       name: 'category',
       rules: {
@@ -34,7 +35,7 @@ export class ProductFormComponent {
     description: {
       appearance: "outline",
       type: "text",
-      value: "test",
+      value: "",
       placeholder: "Enter description",
       name: 'description',
       rules: {
@@ -44,7 +45,7 @@ export class ProductFormComponent {
     price: {
       appearance: "outline",
       type: "number",
-      value: '1',
+      value: '',
       placeholder: "Enter price",
       name: 'price',
       rules: {
@@ -58,7 +59,7 @@ export class ProductFormComponent {
       name: 'inStock',
       placeholder: "Enter price",
       rules: {
-        // required: true,
+        required: true,
       },
     },
     clothSize: {
@@ -66,40 +67,72 @@ export class ProductFormComponent {
       label: "clothSize",
       value: "",
       name: 'clothSize',
-      type: "checkbox",
+      type: "text",
       rules: {
-        // required: true,
+        required: true,
       },
     },
   }
+  productdata: any = []
 
-
-  constructor(public dialogRef: MatDialogRef<ProductFormComponent>, private router: Router, private user_service: UserApiService,) {
+  constructor(public dialogRef: MatDialogRef<ProductFormComponent>, private router: Router, private user_service: UserApiService, @Inject(MAT_DIALOG_DATA) public data: ProductComponent) {
 
   }
 
+  ngOnInit(): void {
+    if (this.data) {
+      this.productdata = this.data
+      this.productModel.productName.value = this.productdata.productName
+      this.productModel.category.value = this.productdata.category
+      this.productModel.description.value = this.productdata.description
+      this.productModel.price.value = this.productdata.price
+      this.productModel.inStock.value = this.productdata.inStock
+      this.productModel.clothSize.value = this.productdata.clothSize
+    }
+  }
+
   submit(productForm: any) {
-    console.log('productForm', productForm)
     if (productForm.invalid) {
       return
     } else {
 
-      const payload = {
-        productName: productForm.value.productName,
-        category: productForm.value.category,
-        description: productForm.value.description,
-        price: productForm.value.price,
-        inStock: productForm.value.inStock,
-        clothSize: productForm.value.clothSize,
-      }
-      this.user_service.addProduct(payload).subscribe((res: any) => {
-        if (res.isSuccess) {
-          this.router.navigateByUrl('/component/product-grid')
-          this.dialogRef.close(false);
-        }
 
-      })
+
+      if (this.data) {
+        const payload = {
+          productName: productForm.value.productName,
+          category: productForm.value.category,
+          description: productForm.value.description,
+          price: productForm.value.price,
+          inStock: productForm.value.inStock,
+          clothSize: productForm.value.clothSize,
+          id: this.productdata._id,
+        }
+        this.user_service.updateProduct(payload).subscribe((res: any) => {
+          if (res.isSuccess) {
+            this.router.navigateByUrl('/component/product-grid')
+          }
+        })
+      } else {
+        const payload = {
+          productName: productForm.value.productName,
+          category: productForm.value.category,
+          description: productForm.value.description,
+          price: productForm.value.price,
+          inStock: productForm.value.inStock,
+          clothSize: productForm.value.clothSize,
+
+        }
+        this.user_service.addProduct(payload).subscribe((res: any) => {
+          if (res.isSuccess) {
+            this.router.navigateByUrl('/component/product-grid')
+          }
+        })
+      }
+
     }
+
+    this.dialogRef.close(false);
   }
 
   onDismiss() {
