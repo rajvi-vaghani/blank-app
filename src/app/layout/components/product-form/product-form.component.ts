@@ -20,21 +20,43 @@ export class ProductFormComponent implements OnInit {
       name: 'productName',
       rules: {
         required: true,
+        textPattern: true
       }
     },
     category: {
       appearance: "outline",
-      type: "text",
+      type: "select",
       value: "",
       placeholder: "Enter category name",
       name: 'category',
       rules: {
         required: true,
       },
+      options: [
+        {
+          name: "Boy",
+          value: "Boy",
+        },
+        {
+          name: "Girl",
+          value: "Girls",
+        },
+        {
+          name: "Baby",
+          value: "Baby",
+        },
+        {
+          name: "Ladies  & Gents",
+          value: "Ladies & Gents",
+        },
+      ],
     },
+
     description: {
       appearance: "outline",
-      type: "text",
+      type: "textarea",
+      rows: 3,
+      cols: 1,
       value: "",
       placeholder: "Enter description",
       name: 'description',
@@ -54,24 +76,60 @@ export class ProductFormComponent implements OnInit {
     },
     inStock: {
       appearance: "outline",
-      type: "text",
+      type: "toggle",
       value: "",
       name: 'inStock',
-      placeholder: "Enter price",
       rules: {
         required: true,
       },
+      options: [
+        {
+          name: "inStock",
+          value: "inStock",
+        },
+        {
+          name: "outOfStock",
+          value: "outOfStock",
+        },
+      ]
     },
     clothSize: {
       appearance: "outline",
       label: "clothSize",
       value: "",
       name: 'clothSize',
-      type: "text",
+      type: "checkbox",
       rules: {
         required: true,
       },
+      options: [
+        {
+          label: "S",
+          name: "S",
+          value: false,
+          checked: false,
+        },
+        {
+          label: "M",
+          name: "M",
+          value: false,
+          checked: false
+        },
+        {
+          label: "L",
+          name: "L",
+          value: false,
+          checked: false
+        },
+        {
+          label: "XL",
+          name: "XL",
+          value: false,
+          checked: false
+        },
+      ],
     },
+
   }
   productdata: any = []
 
@@ -81,6 +139,7 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data) {
+      console.log(this.data)
       this.productdata = this.data
       this.productModel.productName.value = this.productdata.productName
       this.productModel.category.value = this.productdata.category
