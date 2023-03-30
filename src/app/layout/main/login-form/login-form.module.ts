@@ -7,12 +7,14 @@ import { RegisterComponent } from './register/register.component';
 import { StorybookLibraryModule } from 'intergation-storybook-library';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,

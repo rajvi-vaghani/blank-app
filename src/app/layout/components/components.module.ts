@@ -7,11 +7,12 @@ import { UserComponent } from './user/user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertService } from './service/alert.service';
 import { StorybookLibraryModule } from 'intergation-storybook-library';
-
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
-    UserComponent
+    UserComponent,
+    ProductComponent,
   ],
   imports: [
     CommonModule,

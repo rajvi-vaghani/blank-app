@@ -8,12 +8,17 @@ import { MainComponent } from './layout/main/main.component';
 import { StorybookLibraryModule } from 'intergation-storybook-library';
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentsComponent } from './layout/components/components.component';
+import { SidebarComponent } from './layout/basic/sidebar/sidebar.component';
+import { HeaderComponent } from './layout/basic/header/header.component';
+import { MaterialModule } from './material.modules';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    ComponentsComponent
+    ComponentsComponent,
+    SidebarComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,6 +26,7 @@ import { ComponentsComponent } from './layout/components/components.component';
     BrowserAnimationsModule,
     StorybookLibraryModule,
     HttpClientModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

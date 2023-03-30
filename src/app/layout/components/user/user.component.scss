@@ -1,34 +1,42 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .head {
-    border-radius: 15px;
+  border-radius: 15px;
+
+  p,
+  p:hover {
+    color: #000;
+  }
 }
 
 ::ng-deep {
-    .mat-table {
-        overflow: auto;
-        max-height: 600px;
+  .mat-table {
+    overflow: auto;
+    max-height: 600px;
+  }
+
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    color: #6C757D;
+    font-weight: 700;
+    font-size: 13px;
+    font-family: unset;
+    background-color: #f7f7f7 !important;
+  }
+
+  .mat-cell {
+    color: #000;
+    font-size: 13px;
+    font-weight: 500;
+    word-break: break-all;
+    font-family: unset;
+
+    &:hover {
+      color: #4dbbfa !important;
     }
-    thead {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        color: #6C757D;
-        font-weight: 700;
-        font-size: 13px;
-        font-family: unset;
-        background-color: #f7f7f7 !important;
-    }
-    .mat-cell {
-        color: #000;
-        font-size: 13px;
-        font-weight: 500;
-        word-break: break-all;
-        font-family: unset;
-        &:hover {
-            color: #4dbbfa !important;
-        }
-    }
+  }
 }

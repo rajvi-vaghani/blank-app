@@ -1,0 +1,57 @@
+:root {
+  --body-fonts: Roboto, "Helvetica Neue", sans-serif;
+  --body-sub-fonts: Inter, Helvetica, "sans-serif";
+}
+
+.signtext {
+  h4 {
+    font-family: var(--body-fonts);
+    font-size: 23px;
+    font-weight: 700;
+    color: #181C32;
+  }
+
+  span {
+    font-family: var(--body-sub-fonts);
+    color: #A1A5B7;
+    font-weight: 500;
+    font-size: 13px;
+  }
+
+  .or {
+    position: relative;
+    color: #A1A5B7;
+    text-align: center;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 22%;
+      height: 1px;
+      top: 50%;
+      left: 17%;
+      background-color: #dadada;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 22%;
+      height: 1px;
+      top: 50%;
+      right: 17%;
+      background-color: #dadada;
+    }
+  }
+}
+
+::ng-deep {
+  .form {
+    button {
+      width: 99%;
+      background: #000;
+      color: #fff;
+      font-weight: 700;
+    }
+  }
+}

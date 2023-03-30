@@ -1,4 +1,23 @@
-<div class="container">
-    <h2 class="text-center">sign in</h2>
-    <lib-set-form [dynamicField]="mat_field" (parentClick)="parentFunction($event)"></lib-set-form>
+<div class="container main">
+  <div class="text-center signtext">
+    <h4 class="mb-2">Sign In</h4>
+    <span class="register">Your Social Campaigns</span>
+    <div class="d-flex justify-content-center align-items-center my-4">
+      <button class="btn btn-light border mx-2 signin"><img src="/assets/icon/google-icon.svg" width="28"
+          height="28"><span class="ms-2">Sign in with Google</span></button>
+      <button class="btn btn-light border mx-2 signin"><img src="/assets/icon/apple-black.svg" width="28"
+          height="28"><span class="ms-2">Sign in with Apple</span></button>
+    </div>
+    <div class="or my-4">Or with email</div>
+  </div>
+
+  <div class="w-75 m-auto form">
+    <lib-set-form [dynamicField]="loginModel" (parentClick)="submit($event)" [buttonName]="'Sign In'">
+    </lib-set-form>
+  </div>
+
+  <div class="text-center">
+    <span class="text-blue d-block mt-5 mb-3 routerLink f-500">Forgot Password ?</span>
+    <span class="d-block text-gray f-500">Not a Member yet? <span routerLink="/register" class="text-blue routerLink f-500">Sign Up</span></span>
+  </div>
 </div>

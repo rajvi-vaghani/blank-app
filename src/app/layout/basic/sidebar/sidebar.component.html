@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="sidebar text-center">
+    <h4 class="text-light my-4">Demo App</h4>
+  </div>
+
+  <div class="">
+    <mat-accordion class="bg-dark">
+      <mat-expansion-panel class="bg-dark" *ngFor="let data of data; index as i" hideToggle>
+        <mat-expansion-panel-header class="bg-dark accordion-text">
+          <div class="d-flex justify-content-around align-items-center">
+            <button mat-button>
+              <mat-icon>{{data.icon}}</mat-icon>
+            </button>
+            <div>{{data.title}}</div>
+          </div>
+        </mat-expansion-panel-header>
+
+        <div *ngFor="let name of data.menu">
+          <p class="routerLink text-light"  routerLinkActive="active" [routerLink]="name.link">{{name.name}}</p>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </div>
+
+</div>

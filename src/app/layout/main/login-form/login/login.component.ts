@@ -1,53 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user-api.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  providers: [FormGroupDirective]
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
-  formGroup !: FormGroup
-
-  mat_field = {
+  loginModel = {
     email: {
       type: "text",
       value: "",
       appearance: "outline",
       placeholder: "Enter email",
       name: 'email',
-      formControlName: 'email',
       rules: {
         required: true
       }
     },
-    name: {
+    password: {
       type: "text",
       value: "",
       appearance: "outline",
-      placeholder: "Enter email",
-      name: 'name',
-      formControlName: 'name',
-      rules: {
-        required: true
-      }
-    },
-    test: {
-      type: "text",
-      value: "",
-      appearance: "outline",
-      placeholder: "Enter email",
-      name: 'test',
-      formControlName: 'test',
+      placeholder: "Enter password",
+      name: 'password',
       rules: {
         required: true
       }
     },
   }
-  constructor(private formgroupDirective: FormGroupDirective) {
-    this.formGroup = this.formgroupDirective.control
+  private token: string
+  private currentuser: {}
+
+  constructor(private user_service: UserService, private router: Router) {
 
   }
 
@@ -55,12 +42,33 @@ export class LoginComponent implements OnInit {
 
   }
 
-  onSubmit() {
-    // this.login()
-  }
+  submit(loginform: any) {
+    if (loginform.invalid) {
+      return
+    } else {
 
-  parentFunction(parameter: any) {
-    console.log(parameter);
+      const user = {
+        email: loginform.value.email,
+        password: loginform.value.password,
+      }
+      this.user_service.login(user).subscribe((res: any) => {
+        if (res.isSuccess) {
+          console.log(res.isSuccess)
+          this.token = res.responseData.token
+          this.currentuser = {
+            email: res.responseData.email,
+            userRole: res.responseData.userRole,
+            userid: res.responseData.id
+          }
+
+          localStorage.setItem('currentUser', JSON.stringify(this.currentuser))
+          this.router.navigateByUrl('/component')
+        }else{
+          alert('not correct')
+        }
+
+      })
+    }
   }
 
 }

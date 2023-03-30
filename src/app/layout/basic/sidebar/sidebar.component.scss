@@ -1,0 +1,37 @@
+.mat-mdc-button>.mat-icon {
+  font-size: 1.125rem !important;
+  height: 1.125rem !important;
+  width: 1.125rem !important;
+}
+
+.mat-mdc-button>.mat-icon:hover {
+  color: #4dbbfa !important;
+}
+
+.sidebar {
+  h4 {
+    font-family: serif;
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+}
+
+
+::ng-deep {
+
+  .mat-expansion-panel-header {
+    margin: 2% 0;
+  }
+
+  .accordion-text {
+    color: #f1f1f1;
+  }
+
+  &:hover {
+    color: #4dbbfa;
+  }
+
+  .routerLink.active {
+    color: #4dbbfa !important;
+  }
+}
