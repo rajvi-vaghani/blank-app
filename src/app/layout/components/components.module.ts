@@ -8,11 +8,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AlertService } from './service/alert.service';
 import { StorybookLibraryModule } from 'intergation-storybook-library';
 import { ProductComponent } from './product/product.component';
+import { ProductFormComponent } from './product-form/product-form.component';
+import { MaterialModule } from 'src/app/material.modules';
 
 @NgModule({
   declarations: [
     UserComponent,
     ProductComponent,
+    ProductFormComponent,
   ],
   imports: [
     CommonModule,
@@ -20,7 +23,8 @@ import { ProductComponent } from './product/product.component';
     StorybookLibraryModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
   ],
   providers: [
     AlertService

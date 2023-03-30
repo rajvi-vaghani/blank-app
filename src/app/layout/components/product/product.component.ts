@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ProductFormComponent } from '../product-form/product-form.component';
 import { UserApiService } from '../service/user-api.service';
 
 @Component({
@@ -14,7 +17,7 @@ export class ProductComponent implements OnInit {
 
   Columns: Array<cols> = [];
 
-  constructor(private apiservice: UserApiService, public sanitizer: DomSanitizer) {
+  constructor(private apiservice: UserApiService, public sanitizer: DomSanitizer, public dialog: MatDialog) {
 
     this.Columns = [
       {
@@ -57,6 +60,25 @@ export class ProductComponent implements OnInit {
     this.apiservice.getProduct().subscribe((res: any) => {
       this.ProductData = res.data
     })
+  }
+
+  openDialouge() {
+    const dialog = this.dialog.open(ProductFormComponent, {
+      height: '700px',
+      width: '500px',
+      disableClose: true,
+    });
+
+    dialog.afterClosed().subscribe(() => {
+      setTimeout(() => {
+        this.apiservice.getStudent().subscribe((res: any) => {
+          this.ProductData = res.data;
+        })
+      }, 2000);
+
+    })
+
+
   }
 
 }

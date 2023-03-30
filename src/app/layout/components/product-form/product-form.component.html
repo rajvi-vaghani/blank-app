@@ -1,0 +1,12 @@
+<div class="form">
+  <div class="d-flex justify-content-between align-items-center border-bottom mx-4 my-5">
+    <p>Add Product Details</p>
+    <p class="mt-2" (click)="onDismiss()">
+      <mat-icon>close</mat-icon>
+    </p>
+  </div>
+  <div class="body w-75 m-auto ">
+    <lib-set-form [dynamicField]="productModel" (parentClick)="submit($event)" [buttonName]="'Submit'">
+    </lib-set-form>
+  </div>
+</div>
