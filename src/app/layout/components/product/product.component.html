@@ -6,8 +6,7 @@
     </button>
   </div>
   <div class="">
-    <lib-material-grid *ngIf="ProductData.length > 0" [tableColumns]="Columns" [tableData]="ProductData"
-      [editAction]="" [deleteAction]="'D'" (editClick)="edit($event)"  (deleteClick)="delete($event)">
+    <lib-material-grid *ngIf="ProductData.length > 0" [tableColumns]="Columns" [tableData]="ProductData" (editClick)="edit($event)"  (deleteClick)="delete($event)">
     </lib-material-grid>
   </div>
 </div>

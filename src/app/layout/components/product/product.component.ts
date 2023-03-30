@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ConfirmComponent } from '../confirm/confirm.component';
@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit {
 
   Columns: Array<cols> = [];
 
-  constructor(private apiservice: UserApiService, public sanitizer: DomSanitizer, public dialog: MatDialog, private alertService: AlertService,private router:Router) {
+  constructor(private apiservice: UserApiService, public sanitizer: DomSanitizer, public dialog: MatDialog, private alertService: AlertService,private router:Router, public ref:ChangeDetectorRef) {
 
     this.Columns = [
       {
@@ -59,6 +59,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.apiservice.getProduct().subscribe((res: any) => {
       this.ProductData = res.data
+      this.ref.detectChanges()
     })
   }
 

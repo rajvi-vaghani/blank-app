@@ -110,7 +110,7 @@ export class ProductFormComponent implements OnInit {
         }
         this.user_service.updateProduct(payload).subscribe((res: any) => {
           if (res.isSuccess) {
-            this.router.navigateByUrl('/component/product-grid')
+            this.router.navigateByUrl('/component/product')
           }
         })
       } else {
@@ -125,7 +125,7 @@ export class ProductFormComponent implements OnInit {
         }
         this.user_service.addProduct(payload).subscribe((res: any) => {
           if (res.isSuccess) {
-            this.router.navigateByUrl('/component/product-grid')
+            this.router.navigateByUrl('/component/product')
           }
         })
       }
@@ -136,7 +136,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   onDismiss() {
-    this.router.navigateByUrl('/component/product-grid')
+    this.router.navigateByUrl('/component/product')
     this.dialogRef.close(false);
   }
 
