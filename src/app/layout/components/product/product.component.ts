@@ -57,10 +57,12 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.apiservice.getProduct().subscribe((res: any) => {
-      this.ProductData = res.data
-      this.ref.detectChanges()
-    })
+    setTimeout(() => {
+      this.apiservice.getProduct().subscribe((res: any) => {
+        this.ProductData = res.data
+      })
+    }, 100);
+
   }
 
   openDialouge() {
