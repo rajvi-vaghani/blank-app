@@ -139,7 +139,6 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data) {
-      console.log(this.data)
       this.productdata = this.data
       this.productModel.productName.value = this.productdata.productName
       this.productModel.category.value = this.productdata.category
@@ -154,34 +153,23 @@ export class ProductFormComponent implements OnInit {
     if (productForm.invalid) {
       return
     } else {
-
-
+      const payload = {
+        productName: productForm.value.productName,
+        category: productForm.value.category,
+        description: productForm.value.description,
+        price: productForm.value.price,
+        inStock: productForm.value.inStock,
+        clothSize: productForm.value.clothSize,
+        id: this.productdata._id,
+      }
 
       if (this.data) {
-        const payload = {
-          productName: productForm.value.productName,
-          category: productForm.value.category,
-          description: productForm.value.description,
-          price: productForm.value.price,
-          inStock: productForm.value.inStock,
-          clothSize: productForm.value.clothSize,
-          id: this.productdata._id,
-        }
         this.user_service.updateProduct(payload).subscribe((res: any) => {
           if (res.isSuccess) {
             this.router.navigateByUrl('/component/product')
           }
         })
       } else {
-        const payload = {
-          productName: productForm.value.productName,
-          category: productForm.value.category,
-          description: productForm.value.description,
-          price: productForm.value.price,
-          inStock: productForm.value.inStock,
-          clothSize: productForm.value.clothSize,
-
-        }
         this.user_service.addProduct(payload).subscribe((res: any) => {
           if (res.isSuccess) {
             this.router.navigateByUrl('/component/product')

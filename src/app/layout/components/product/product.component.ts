@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit {
 
   Columns: Array<cols> = [];
 
-  constructor(private apiservice: UserApiService, public sanitizer: DomSanitizer, public dialog: MatDialog, private alertService: AlertService,private router:Router, public ref:ChangeDetectorRef) {
+  constructor(private apiservice: UserApiService, public sanitizer: DomSanitizer, public dialog: MatDialog, private alertService: AlertService, private router: Router, public ref: ChangeDetectorRef) {
 
     this.Columns = [
       {
@@ -64,25 +64,16 @@ export class ProductComponent implements OnInit {
   }
 
   openDialouge() {
-    const dialog = this.dialog.open(ProductFormComponent, {
+    this.router.navigateByUrl(`/component/product/add`)
+    this.dialog.open(ProductFormComponent, {
       height: '700px',
       width: '500px',
       disableClose: true,
     });
-
-    dialog.afterClosed().subscribe(() => {
-      setTimeout(() => {
-        this.apiservice.getStudent().subscribe((res: any) => {
-          this.ProductData = res.data;
-        })
-      }, 2000);
-
-    })
-
-
   }
 
   edit(element: any) {
+    this.router.navigateByUrl(`/component/product/update/${element._id}`)
     this.dialog.open(ProductFormComponent, {
       height: '700px',
       width: '500px',
@@ -92,11 +83,11 @@ export class ProductComponent implements OnInit {
   }
 
   delete(element: any) {
+    this.router.navigateByUrl(`/component/product/delete/${element._id}`)
     const dialog = this.dialog.open(ConfirmComponent, {
       height: '200px',
       width: '400px',
     });
-
     dialog.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
         this.apiservice.deleteProduct(element._id).subscribe(res => {
@@ -107,8 +98,8 @@ export class ProductComponent implements OnInit {
             })
           }
         })
-
       }
+      this.router.navigateByUrl('/component/product')
     });
   }
 

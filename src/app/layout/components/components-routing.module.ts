@@ -22,6 +22,18 @@ const routes: Routes = [
         path: 'product',
         component: ProductComponent
       },
+      {
+        path: 'product/update/:id',
+        component: ProductComponent
+      },
+      {
+        path: 'product/delete/:id',
+        component: ProductComponent
+      },
+      {
+        path: 'product/add',
+        component: ProductComponent
+      },
     ]
   }
 ];
