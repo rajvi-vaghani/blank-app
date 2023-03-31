@@ -121,12 +121,6 @@ export class ProductFormComponent implements OnInit {
           value: false,
           checked: false
         },
-        {
-          label: "XL",
-          name: "XL",
-          value: false,
-          checked: false
-        },
       ],
     },
 

@@ -100,6 +100,7 @@ export class ProductComponent implements OnInit {
         })
       }
       this.router.navigateByUrl('/component/product')
+      this.ref.detectChanges()
     });
   }
 
