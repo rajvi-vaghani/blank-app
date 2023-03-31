@@ -8,6 +8,7 @@ import { StorybookLibraryModule } from 'intergation-storybook-library';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { AlertService } from '../../components/service/alert.service';
 
 
 @NgModule({
@@ -23,6 +24,9 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+  ],
+  providers: [
+    AlertService
   ]
 })
 export class LoginFormModule { }

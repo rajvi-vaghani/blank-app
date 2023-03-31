@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/layout/components/service/alert.service';
 import { UserService } from '../services/user-api.service';
 
 @Component({
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
   private token: string
   private currentuser: {}
 
-  constructor(private user_service: UserService, private router: Router) {
+  constructor(private user_service: UserService, private router: Router, private alertService: AlertService,) {
 
   }
 
@@ -43,32 +44,28 @@ export class LoginComponent implements OnInit {
   }
 
   submit(loginform: any) {
-    if (loginform.invalid) {
-      return
-    } else {
-
-      const user = {
-        email: loginform.value.email,
-        password: loginform.value.password,
-      }
-      this.user_service.login(user).subscribe((res: any) => {
-        if (res.isSuccess) {
-          console.log(res.isSuccess)
-          this.token = res.responseData.token
-          this.currentuser = {
-            email: res.responseData.email,
-            userRole: res.responseData.userRole,
-            userid: res.responseData.id
-          }
-
-          localStorage.setItem('currentUser', JSON.stringify(this.currentuser))
-          this.router.navigateByUrl('/component')
-        }else{
-          alert('not correct')
-        }
-
-      })
+    const user = {
+      email: loginform.value.email,
+      password: loginform.value.password,
     }
+    this.user_service.login(user).subscribe((res: any) => {
+      if (res.isSuccess) {
+        this.alertService.openSnackBar('Login Successfully!');
+        this.token = res.responseData.token
+        this.currentuser = [{
+          email: res.responseData.email,
+          userRole: res.responseData.userRole,
+          userid: res.responseData.id,
+          token: res.responseData.token
+        }]
+
+        localStorage.setItem('currentUser', JSON.stringify(this.currentuser))
+        this.router.navigateByUrl('/component')
+      } else {
+        this.alertService.openSnackBar('Incorrect email or password');
+      }
+
+    })
   }
 
 }

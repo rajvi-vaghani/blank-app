@@ -12,7 +12,7 @@
   </div>
 
   <div class="w-75 m-auto form">
-    <lib-set-form [dynamicField]="loginModel" (parentClick)="submit($event)" [buttonName]="'Sign In'">
+    <lib-set-form [dynamicField]="loginModel" (parentClick)="submit($event)" [buttonName]="'Sign In'" [error_msg]="'Enter email and password.'">
     </lib-set-form>
   </div>
 

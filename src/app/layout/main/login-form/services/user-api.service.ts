@@ -29,4 +29,8 @@ export class UserService {
   sendReqForResetPassword(email: string) {
     return this.http.post(`${this.user_base}/SendResetPasswordRequest?email=${email}`, email)
   }
+
+  isLoggedIn() {
+    return localStorage.getItem('currentUser');
+  }
 }

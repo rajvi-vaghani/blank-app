@@ -6,11 +6,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainComponent } from './layout/main/main.component';
 import { StorybookLibraryModule } from 'intergation-storybook-library';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ComponentsComponent } from './layout/components/components.component';
 import { SidebarComponent } from './layout/basic/sidebar/sidebar.component';
 import { HeaderComponent } from './layout/basic/header/header.component';
 import { MaterialModule } from './material.modules';
+import { InterceptorService } from './layout/main/login-form/services/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,13 @@ import { MaterialModule } from './material.modules';
     HttpClientModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
